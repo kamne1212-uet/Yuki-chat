@@ -74,16 +74,28 @@ class SemanticMemory:
         query_embedding: List[float],
         top_k: int = 5,
         min_score: float = 0.75,
+        exclude_source: str = None,
     ) -> List[Dict]:
         with _DB_LOCK, self._connect() as conn:
-            cur = conn.execute(
-                """
-                SELECT content, embedding, source
-                FROM semantic_memory
-                WHERE user_id = ?
-                """,
-                (user_id,),
-            )
+            # Filter out assistant messages at SQL level for better performance
+            if exclude_source:
+                cur = conn.execute(
+                    """
+                    SELECT content, embedding, source
+                    FROM semantic_memory
+                    WHERE user_id = ? AND source != ?
+                    """,
+                    (user_id, exclude_source),
+                )
+            else:
+                cur = conn.execute(
+                    """
+                    SELECT content, embedding, source
+                    FROM semantic_memory
+                    WHERE user_id = ?
+                    """,
+                    (user_id,),
+                )
             rows = cur.fetchall()
 
         scored = []
@@ -101,3 +113,4 @@ class SemanticMemory:
 
         scored.sort(key=lambda x: x["score"], reverse=True)
         return scored[:top_k]
+
