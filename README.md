@@ -65,8 +65,9 @@ Yuki-chat_bot/
 ## Configuration
 
 - **Model**: `llama3:8b-instruct-q4_K_M` (can be changed in `ai/engine.py`)
-- **Max Tokens**: 128 (can be adjusted in `ai/engine.py`)
-- **Rate Limit**: 60 seconds cooldown per user
+- **Embed model**: `nomic-embed-text`
+- **Max Tokens**: 256 (can be adjusted in `ai/engine.py`)
+- **Rate Limit**: 30 seconds cooldown per user
 - **GIF Cooldown**: 90 seconds per user
 
 ## Notes
