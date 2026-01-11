@@ -1,6 +1,11 @@
 import random
 import time
 
+"""
+Send GIFs based on keywords, then roll the probability
+of sending that GIF to prevent GIF spam abuse.
+"""
+
 # ===== COOLDOWN =====
 GIF_COOLDOWN = {}
 GIF_COOLDOWN_SECONDS = 90
@@ -46,14 +51,14 @@ GIF_CONFIG = {
         "gifs": [
             "https://tenor.com/view/suou-yuki-roshidere-sister-suou-yuki-gif-17357276135117632944",
             "https://tenor.com/view/suou-yuki-roshidere-sister-suou-yuki-gif-17192898929696458608",
-            "https://tenor.com/view/alya-sometimes-hides-her-feelings-in-russian-roshidere-anime-girl-cute-gif-16228130656224382773"
+            "https://tenor.com/view/alya-sometimes-hides-her-feelings-in-russian-roshidere-anime-girl-cute-gif-16228130656224382773",
             "https://tenor.com/view/suou-yuki-roshidere-sister-suou-yuki-gif-5671034940910266841"
         ]
     },
     "blush": {
         "priority": 2,
         "probability": 0.5,
-        "keywords": ["blushing"],
+        "keywords": ["blushing", "blushes slightly", "blushes"],
         "gifs": [
             "https://tenor.com/view/suou-yuki-roshidere-sister-suou-yuki-gif-8255471325517522898"
         ]
@@ -61,7 +66,7 @@ GIF_CONFIG = {
     "excited": {
         "priority": 1,
         "probability": 0.5,
-        "keywords": ["leans in closer", "excitedly"],
+        "keywords": ["leans in closer", "excitedly","leans in curiously"],
         "gifs": [
             "https://tenor.com/view/%E8%89%BE%E8%8E%89%E5%90%8C%E5%AD%B8-alya-sometimes-hides-her-feelings-in-russian-suou-yuki-%E5%91%A8%E9%98%B2-%E6%9C%89%E5%B8%8C-%E8%B2%BC-gif-16589675791875980427",
             "https://tenor.com/view/suou-yuki-roshidere-sister-suou-yuki-gif-5671034940910266841"
@@ -103,4 +108,5 @@ def pick_gif_from_reply(bot_reply: str) -> str | None:
         return None
 
     return random.choice(cfg["gifs"])
+
 
