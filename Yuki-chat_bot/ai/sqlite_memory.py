@@ -108,7 +108,7 @@ class SQLiteMemory:
                 )
             conn.commit()
 
-    # ---------- Message APIs ----------
+    # ===== Message APIs =====
 
     def add_message(self, user_id: str, role: str, content: str):
         with _DB_LOCK, self._connect() as conn:
@@ -153,7 +153,7 @@ class SQLiteMemory:
             conn.execute("DELETE FROM messages WHERE user_id = ?", (user_id,))
             conn.commit()
 
-    # ---------- Summary APIs ----------
+    # ===== Summary APIs =====
 
     def get_summary(self, user_id: str, limit: int = 2) -> Optional[str]:
         """
@@ -225,7 +225,7 @@ class SQLiteMemory:
             
             conn.commit()
 
-    # ---------- Prompt Helper ----------
+    # ===== Prompt Helper =====
 
     def build_context(
         self,
@@ -250,5 +250,6 @@ class SQLiteMemory:
 
         messages.extend(self.get_recent_messages(user_id, limit))
         return messages
+
 
 
