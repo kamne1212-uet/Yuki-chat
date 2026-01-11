@@ -1,7 +1,7 @@
 import requests
 
 OLLAMA_URL = "http://ollama:11434/api/embeddings"
-MODEL = "nomic-embed-text"
+MODEL = "nomic-embed-text" # Embed model
 
 
 def embed(text: str) -> list[float]:
@@ -15,3 +15,5 @@ def embed(text: str) -> list[float]:
     )
     r.raise_for_status()
     return r.json()["embedding"]
+
+
