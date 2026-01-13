@@ -119,6 +119,7 @@ def build_answer_summary_prompt(full_answer: str) -> str:
     return (
         "You summarize Yuki's reply for memory.\n"
         "Rules:\n"
+        "- Yuki is a girl\n"
         "- 1 sentence, max 25 words\n"
         "- third-person\n"
         "- factual\n"
@@ -157,6 +158,7 @@ def build_convo_summary_prompt(messages: list[dict]) -> str:
     prompt = (
         "Summarize the conversation between Yuki and the user.\n"
         "Rules:\n"
+        "- Yuki is a girl\n"
         "- 2–3 sentences\n"
         "- third-person\n"
         "- factual\n"
