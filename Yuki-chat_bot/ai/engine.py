@@ -2,7 +2,7 @@ import aiohttp
 import json
 from typing import AsyncGenerator, Optional
 
-from ai.prompts import SYSTEM_PROMPT
+from ai.prompts import PERSONA_PROMPT
 
 # ==============================
 # Ollama config
@@ -80,7 +80,7 @@ def build_answer_prompt(messages: list[dict]) -> str:
     """
     Build prompt for main Yuki response
     """
-    convo = SYSTEM_PROMPT.strip() + "\n\n"
+    convo = PERSONA_PROMPT.strip() + "\n\n"
 
     for m in messages[-10:]:
         role = m["role"]
